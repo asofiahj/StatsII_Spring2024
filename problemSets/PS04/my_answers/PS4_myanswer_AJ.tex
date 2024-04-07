@@ -1,0 +1,66 @@
+\documentclass[oneside]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[margin=1in]{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\title{Problem Set 4}
+\author{Ana Sofia Jesus 19327602}
+\date{07/04/2024}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 1}
+
+After loading the necessary packages and importing the data from the eha library, the Cox proportional hazard model was estimated:
+\begin{verbatim}
+cox_model <- coxph(Surv(enter, exit, event) ~ m.age + sex, data = child)
+\end{verbatim}
+
+The results obtained are displayed on Table 1. 
+
+\begin{table}[!htbp] \centering 
+  \caption{Coefficients for Cox Proportional Hazard model} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & enter \\ 
+\hline \\[-1.8ex] 
+ m.age & 0.008$^{***}$ \\ 
+  & (0.002) \\ 
+  & \\ 
+ sexfemale & $-$0.082$^{***}$ \\ 
+  & (0.027) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 26,574 \\ 
+R$^{2}$ & 0.001 \\ 
+Max. Possible R$^{2}$ & 0.986 \\ 
+Log Likelihood & $-$56,503.480 \\ 
+Wald Test & 22.520$^{***}$ (df = 2) \\ 
+LR Test & 22.518$^{***}$ (df = 2) \\ 
+Score (Logrank) Test & 22.530$^{***}$ (df = 2) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+ 
+The estimated coefficient for the mother's age (m.age) is positive (0.007617), suggesting that for each one-unit increase in mother's age, the logged hazard ratio increases approximately 0.76\%, while holding infant gender constant.
+\\
+This effect of m.age on the hazard is statistically significant at a high level of confidence (0.001).
+\\
+On the other hand, the estimated coefficient for female gender (compared to male gender) is negative (-0.082215), suggesting that being female is associated with a lower hazard compared to being male, while holding mother's age constant.
+\\
+In other words, being female is associated with a hazard approximately 7.89\% lower (1 - 0.9211 = 0.0789 decrease) compared to being male, for mothers of the same age.
+\\
+This effect of gender on the mortality hazard is also statistically significant at the level of confidence (0.01).
+\\
+These interpretations provide insights into the factors influencing historical child mortality rates based on mother's age and infant's gender in Sweden from 1850 to 1884. 
+
+\end{document}
